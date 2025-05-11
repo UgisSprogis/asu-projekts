@@ -3,7 +3,7 @@ import { ReactNode } from 'react'
 import ClientLayout from '@/components/ClientLayout'
 
 export const metadata = {
-  title: 'AU Transport Insights',
+  title: 'ASU',
   description: 'Iegūsti ieskatu par iekāroto transportlīdzekli',
 }
 
