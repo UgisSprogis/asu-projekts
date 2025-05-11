@@ -1,11 +1,10 @@
 import Image from "next/image";
 
-interface VehiclePageProps {
-    params: { id: string };
-}
 export default async function VehiclePage({
-    params = { id: "" },
-}: VehiclePageProps) {
+    params,
+}: {
+    params: { id: string };
+}) {
     const { id } = await params;
 
     const sampleData: Record<
@@ -26,6 +25,7 @@ export default async function VehiclePage({
             image: "/images/volvo-v60.png",
         },
     };
+
     const info = sampleData[id] ?? {
         make: "Volvo",
         model: "V60",
