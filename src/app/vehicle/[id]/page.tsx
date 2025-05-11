@@ -5,13 +5,11 @@ interface VehiclePageProps {
     params: { id: string };
 }
 
-export async function generateMetadata({
-    params,
-}: VehiclePageProps): Promise<Metadata> {
+export function generateMetadata({ params }: VehiclePageProps): Metadata {
     return { title: `Transportlīdzeklis ${params.id}` };
 }
 
-export default function VehiclePage({ params }: VehiclePageProps) {
+export default async function VehiclePage({ params }: VehiclePageProps) {
     const { id } = params;
 
     const sampleData: Record<
@@ -28,17 +26,17 @@ export default function VehiclePage({ params }: VehiclePageProps) {
             make: "Volvo",
             model: "V60",
             year: 2018,
-            mileage: 239439,
+            mileage: 239_439,
             image: "/images/volvo-v60.png",
         },
     };
 
     const info = sampleData[id] ?? {
-        make: "Volvo",
-        model: "V60",
-        year: 2018,
-        mileage: 239439,
-        image: "/images/volvo-v60.png",
+            make: "Volvo",
+            model: "V60",
+            year: 2018,
+            mileage: 239_439,
+            image: "/images/volvo-v60.png",
     };
 
     return (
