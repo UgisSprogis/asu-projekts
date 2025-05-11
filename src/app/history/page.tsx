@@ -55,7 +55,7 @@ export default function HistoryPage() {
                         </div>
                         {item.id === "Volvo V60" && (
                             <Image
-                                src="../../public/images/volvo-v60.png"
+                                src="/images/volvo-v60.png"
                                 alt="Volvo V60"
                                 width={120}
                                 height={80}
