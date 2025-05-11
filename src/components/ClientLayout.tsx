@@ -18,7 +18,6 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
             <div className="flex">
                 {isSidebarOpen && <Sidebar />}
                 <main className="flex-1 p-6">{children}</main>
-
             </div>
         </>
     );

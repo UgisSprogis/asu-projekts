@@ -34,11 +34,11 @@ export default function VehiclePage({ params }: VehiclePageProps) {
     };
 
     const info = sampleData[id] ?? {
-            make: "Volvo",
-            model: "V60",
-            year: 2018,
-            mileage: 239439,
-            image: "/images/volvo-v60.png",
+        make: "Volvo",
+        model: "V60",
+        year: 2018,
+        mileage: 239439,
+        image: "/images/volvo-v60.png",
     };
 
     return (
