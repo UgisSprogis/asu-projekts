@@ -22,22 +22,15 @@ export default function AboutPage() {
                     Noteikumi un nosacījumi
                 </h2>
                 <p className="leading-relaxed">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                    occaecat cupidatat non proident, sunt in culpa qui officia
-                    deserunt mollit anim id est laborum.
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                    occaecat cupidatat non proident, sunt in culpa qui officia
-                    deserunt mollit anim id est laborum.
+                    <strong>Vispārīgie noteikumi:</strong> Lietojot “ASU Transport Insights”, Lietotājs piekrīt šiem noteikumiem. Pakalpojums sniedz informāciju par automašīnu tehniskajiem datiem, izmantojot publiskos CSDD datus un mākslīgo intelektu. Informācija ir informatīva un neaizvieto oficiālus slēdzienus.
+                    <br /><br />
+                    <strong>Lietotāja pienākumi:</strong> Lietotājs ir atbildīgs par ievadīto datu precizitāti un apņemas neizmantot Pakalpojumu nelikumīgiem mērķiem.
+                    <br /><br />
+                    <strong>Datu aizsardzība:</strong> Pakalpojums ievēro GDPR un Latvijas likumus. Dati tiek glabāti tikai ar Lietotāja piekrišanu.
+                    <br /><br />
+                    <strong>Atbildības ierobežojumi:</strong> Pakalpojums nesniedz garantijas par datu pilnīgumu vai precizitāti. Lietotājs pats atbild par lēmumiem, kas balstīti uz iegūto informāciju.
+                    <br /><br />
+                    <strong>Autortiesības:</strong> Pakalpojuma saturs ir aizsargāts ar autortiesībām. To nedrīkst kopēt vai izplatīt bez atļaujas.
                 </p>
             </div>
         </section>

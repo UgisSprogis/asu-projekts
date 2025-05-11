@@ -2,17 +2,12 @@ import Link from "next/link";
 
 export default function Sidebar() {
     const samples = [
-        "AK-47",
-        "M4A1",
-        "M4A4",
-        "AWP",
-        "USP-S",
-        "FAMAS",
+        "Volvo V60",
     ];
 
     return (
         <aside className="w-56 h-screen bg-gray-800 p-4 overflow-auto">
-            <h1 className="text-lg font-bold text-gray-300 mb-2 underline">Vēsture</h1>
+        <Link href="/history" className="block mb-4 text-gray-300 hover:text-white transition">Vēsture</Link>
 
             <ul className="space-y-2">
                 {samples.map((s) => (

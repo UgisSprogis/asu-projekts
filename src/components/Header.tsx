@@ -32,7 +32,7 @@ export default function Header({ onToggleSidebar }: HeaderProps) {
                 </svg>
             </button>
             <Link href="/" className="flex items-center">
-                <Image src={logo} alt="AU logo" width={32} height={32} />
+                <Image src={logo} alt="ASU logo" width={32} height={32} />
                 <span className="ml-2 text-xl font-bold text-white">ASU</span>
             </Link>
             <nav className="ml-auto space-x-4">
