@@ -1,16 +1,12 @@
 import Image from "next/image";
-import { Metadata } from "next";
 
 interface VehiclePageProps {
     params: { id: string };
 }
-
-export function generateMetadata({ params }: VehiclePageProps): Metadata {
-    return { title: `Transportlīdzeklis ${params.id}` };
-}
-
-export default async function VehiclePage({ params }: VehiclePageProps) {
-    const { id } = params;
+export default async function VehiclePage({
+    params = { id: "" },
+}: VehiclePageProps) {
+    const { id } = await params;
 
     const sampleData: Record<
         string,
@@ -26,17 +22,16 @@ export default async function VehiclePage({ params }: VehiclePageProps) {
             make: "Volvo",
             model: "V60",
             year: 2018,
-            mileage: 239_439,
+            mileage: 239439,
             image: "/images/volvo-v60.png",
         },
     };
-
     const info = sampleData[id] ?? {
-            make: "Volvo",
-            model: "V60",
-            year: 2018,
-            mileage: 239_439,
-            image: "/images/volvo-v60.png",
+        make: "Volvo",
+        model: "V60",
+        year: 2018,
+        mileage: 239439,
+        image: "/images/volvo-v60.png",
     };
 
     return (
