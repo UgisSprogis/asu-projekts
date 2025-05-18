@@ -1,52 +1,173 @@
 "use client";
+
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import Image from "next/image";
+
+type CarInfo = {
+    make: string;
+    model: string;
+    year: number;
+    engine: string;
+    gearbox: string;
+    mileage: number;
+    color: string;
+    bodyType: string;
+    nextInspection: string;
+    vin: string;
+    image: string;
+    issues: string[];
+};
+const MOCK_CARS: Record<string, CarInfo> = {
+    "GG-6904": {
+        make: "Volkswagen",
+        model: "Passat (B5+)​",
+        year: 2003,
+        engine: "1.9 dīzelis",
+        gearbox: "Manuāla 5 ātrumi",
+        mileage: 383_000,
+        color: "Sudraba metālika",
+        bodyType: "Sedans",
+        nextInspection: "04.2026",
+        vin: "WVWZZZ3BZ3E073103",
+        image: "/images/passat.png",
+        issues: [
+            "Nodilusi katalizatora keramikas kodols",
+            "Lambda zondes neprecīzs signāls",
+            "EGR vārsta aizsērējums",
+            "Turbo noplūdes vai spiediena zudums",
+        ],
+    },
+};
 
 export default function HomePage() {
-    const [query, setQuery] = useState("");
-    const [details, setDetails] = useState("");
-    const router = useRouter();
+    const [plate, setPlate] = useState("");
+    const [car, setCar] = useState<CarInfo | null>(null);
+    const [error, setError] = useState<string | null>(null);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        const raw = localStorage.getItem("history") || "[]";
-        const history: { id: string; timestamp: string }[] = JSON.parse(raw);
-        const now = new Date().toISOString();
-        const updated = [
-            { id: query, timestamp: now },
-            ...history.filter((h) => h.id !== query),
-        ];
-        localStorage.setItem("history", JSON.stringify(updated));
-        router.push(`/vehicle/${encodeURIComponent(query)}`);
+        const info = MOCK_CARS[plate];
+        if (info) {
+            setCar(info);
+            setError(null);
+        } else {
+            setCar(null);
+            setError(`Dati nav pieejami transportlīdzeklim: ${plate}`);
+        }
     };
 
     return (
-        <section className="max-w-xl mx-auto">
+        <div className="min-h-screen bg-gray-900 text-white p-6">
             <h1 className="text-2xl font-semibold mb-6">
-                Iegūsti ieskatu par iekāroto transportlīdzekli!
+                Iegūsti ieskatu par transportlīdzekli
             </h1>
-            <form onSubmit={handleSubmit} className="space-y-4">
+
+            <form onSubmit={handleSubmit} className="flex space-x-2 mb-6">
                 <input
                     type="text"
-                    placeholder="Ievadiet saiti vai valsts nr. zīmi"
-                    value={query}
-                    onChange={(e) => setQuery(e.target.value)}
-                    required
-                    className="w-full px-4 py-2 rounded bg-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
-                />
-                <textarea
-                    placeholder="ievadiet informāciju par detalizētu ieskatu (nav obligāts)"
-                    value={details}
-                    onChange={(e) => setDetails(e.target.value)}
-                    className="w-full h-32 px-4 py-2 rounded bg-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
+                    placeholder="Ievadiet valsts nr. zīmi"
+                    value={plate}
+                    onChange={(e) => setPlate(e.target.value.toUpperCase())}
+                    className="flex-1 px-4 py-2 rounded bg-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
                 />
                 <button
                     type="submit"
                     className="px-6 py-2 bg-green-500 rounded hover:bg-green-600 transition"
                 >
-                    Turpināt
+                    Meklēt
                 </button>
             </form>
-        </section>
+
+            {error && <p className="text-red-500 mb-6">{error}</p>}
+
+            {car && (
+                <div className="bg-gray-800 p-6 rounded-lg space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <Image
+                                src={car.image}
+                                alt={`${car.make} ${car.model}`}
+                                width={600}
+                                height={400}
+                                className="rounded-lg"
+                            />
+                        </div>
+                        <table className="w-full text-left text-gray-200">
+                            <tbody>
+                                <tr>
+                                    <td className="font-medium py-1">Marka:</td>
+                                    <td className="py-1">
+                                        {car.make} {car.model}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className="font-medium py-1">
+                                        Izlaiduma gads:
+                                    </td>
+                                    <td className="py-1">{car.year}</td>
+                                </tr>
+                                <tr>
+                                    <td className="font-medium py-1">
+                                        Motors:
+                                    </td>
+                                    <td className="py-1">{car.engine}</td>
+                                </tr>
+                                <tr>
+                                    <td className="font-medium py-1">
+                                        Ātrumkārba:
+                                    </td>
+                                    <td className="py-1">{car.gearbox}</td>
+                                </tr>
+                                <tr>
+                                    <td className="font-medium py-1">
+                                        Nobraukums, km:
+                                    </td>
+                                    <td className="py-1">
+                                        {car.mileage.toLocaleString()}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className="font-medium py-1">Krāsa:</td>
+                                    <td className="py-1">{car.color}</td>
+                                </tr>
+                                <tr>
+                                    <td className="font-medium py-1">
+                                        Virsbūves tips:
+                                    </td>
+                                    <td className="py-1">{car.bodyType}</td>
+                                </tr>
+                                <tr>
+                                    <td className="font-medium py-1">
+                                        Nāk. apskate:
+                                    </td>
+                                    <td className="py-1">
+                                        {car.nextInspection}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className="font-medium py-1">
+                                        VIN kods:
+                                    </td>
+                                    <td className="py-1 font-mono">
+                                        {car.vin}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div>
+                        <h2 className="text-xl font-semibold mb-2">
+                            Iespējamās problēmas
+                        </h2>
+                        <ul className="list-disc list-inside space-y-1 text-gray-200">
+                            {car.issues.map((i, idx) => (
+                                <li key={idx}>{i}</li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+            )}
+        </div>
     );
 }
