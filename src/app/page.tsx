@@ -19,7 +19,7 @@ type CarInfo = {
     issues: string[];
 };
 const MOCK_CARS: Record<string, CarInfo> = {
-    "GG-6904": {
+    "https://www.ss.com/msg/lv/transport/cars/volkswagen/passat-b5/oddkc.html#photo-1": {
         numberPlate: "GG-6904",
         make: "Volkswagen",
         model: "Passat (B5+)​",
@@ -80,7 +80,7 @@ export default function HomePage() {
     };
 
     return (
-            <section className="max-w-xl mx-auto">
+            <section className="max-w-6xl mx-auto">
             <h1 className="text-2xl font-bold text-center mb-6">
                 Iegūsti ieskatu par transportlīdzekli
             </h1>
@@ -90,7 +90,7 @@ export default function HomePage() {
                     type="text"
                     placeholder="Ievadiet valsts nr. zīmi / VIN kodu"
                     value={plate}
-                    onChange={(e) => setPlate(e.target.value.toUpperCase())}
+                    onChange={(e) => setPlate(e.target.value)}
                     className="w-full px-4 py-2 rounded bg-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
                 />
                 <input
@@ -102,7 +102,7 @@ export default function HomePage() {
                     type="submit"
                     className="px-6 py-2 bg-green-500 rounded hover:bg-green-600 transition"
                 >
-                    Meklēt
+                    Turpināt
                 </button>
             </form>
 
