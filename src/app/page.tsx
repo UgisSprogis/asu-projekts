@@ -80,23 +80,23 @@ export default function HomePage() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-900 text-white p-6">
-            <h1 className="text-2xl font-semibold mb-6">
+            <section className="max-w-xl mx-auto">
+            <h1 className="text-2xl font-bold text-center mb-6">
                 Iegūsti ieskatu par transportlīdzekli
             </h1>
 
-            <form onSubmit={handleSubmit} className="flex space-x-2 mb-6">
+            <form onSubmit={handleSubmit} className="space-y-4">
                 <input
                     type="text"
                     placeholder="Ievadiet valsts nr. zīmi / VIN kodu"
                     value={plate}
                     onChange={(e) => setPlate(e.target.value.toUpperCase())}
-                    className="flex-1 px-4 py-2 rounded bg-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
+                    className="w-full px-4 py-2 rounded bg-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
                 />
                 <input
                     type="text"
-                    placeholder="Ievadiet informāciju ko meklējat"
-                    className="flex-1 px-4 py-2 rounded bg-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
+                    placeholder="Ievadiet informāciju par detalizētu ieskatu (nav obligāts)"
+                    className="w-full h-32 px-4 py-2 rounded bg-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
                 />
                 <button
                     type="submit"
@@ -202,6 +202,6 @@ export default function HomePage() {
                     </div>
                 </div>
             )}
-        </div>
+        </section>
     );
 }
