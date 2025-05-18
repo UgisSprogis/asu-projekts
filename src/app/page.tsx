@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 
 type CarInfo = {
+    numberPlate: string;
     make: string;
     model: string;
     year: number;
@@ -19,6 +20,7 @@ type CarInfo = {
 };
 const MOCK_CARS: Record<string, CarInfo> = {
     "GG-6904": {
+        numberPlate: "GG-6904",
         make: "Volkswagen",
         model: "Passat (B5+)​",
         year: 2003,
@@ -37,6 +39,27 @@ const MOCK_CARS: Record<string, CarInfo> = {
             "Turbo noplūdes vai spiediena zudums",
         ],
     },
+    "5UXWX9C56D0A30788": {
+        numberPlate: "N/A",
+        make: "BMW",
+        model: "F25​",
+        year: 2012,
+        engine: "2.0 N20 benzīns",
+        gearbox: "automātiskā",
+        mileage: 0,
+        color: "Titansilber metālika",
+        bodyType: "SUV",
+        nextInspection: "unknown",
+        vin: "5UXWX9C56D0A30788",
+        image: "/images/bmw.png",
+        issues: [
+            "Troksnis no motora aizmugures (ķēdes rajonā)",
+            "Check Engine gaisma",
+            "Laika ķēdes spriegotājs un vadotnes nodilst priekšlaicīgi, īpaši agrīnajos modeļos",
+            "Ķēde var izstiepties vai pat noslīdēt, radot bīstamu dzinēja sinhronizācijas zudumu",
+        ],
+    },
+
 };
 
 export default function HomePage() {
@@ -65,9 +88,14 @@ export default function HomePage() {
             <form onSubmit={handleSubmit} className="flex space-x-2 mb-6">
                 <input
                     type="text"
-                    placeholder="Ievadiet valsts nr. zīmi"
+                    placeholder="Ievadiet valsts nr. zīmi / VIN kodu"
                     value={plate}
                     onChange={(e) => setPlate(e.target.value.toUpperCase())}
+                    className="flex-1 px-4 py-2 rounded bg-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
+                />
+                <input
+                    type="text"
+                    placeholder="Ievadiet informāciju ko meklējat"
                     className="flex-1 px-4 py-2 rounded bg-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
                 />
                 <button
@@ -94,6 +122,12 @@ export default function HomePage() {
                         </div>
                         <table className="w-full text-left text-gray-200">
                             <tbody>
+                                <tr>
+                                    <td className="font-medium py-1">
+                                        Valsts nr. zīme:
+                                    </td>
+                                    <td className="py-1">{car.numberPlate}</td>
+                                </tr>
                                 <tr>
                                     <td className="font-medium py-1">Marka:</td>
                                     <td className="py-1">
